@@ -13,33 +13,39 @@ function adjustHealthBars(maxLife) {
   playerHealthBar.max = maxLife;
   playerHealthBar.value = maxLife;
 }
-
-function dealMonsterDamage(damage) {
-  const dealtDamage = Math.random() * damage;
-  monsterHealthBar.value -= dealtDamage;
-  return dealtDamage;
+// attack
+function doMonsterDamage(damage) {
+  console.log( '--v-- initial monsterHealthBar.value: ' + monsterHealthBar.value);
+  const randomDamage = Math.random() * damage;
+  console.log('--v-- this is my random nr: '+ randomDamage);
+  monsterHealthBar.value -= randomDamage;
+  console.log('--v-- monsterHealthBar.value minus randomNr: '+monsterHealthBar.value + 'esto lleva la cuenta por separado para actualizar el bar');
+  return randomDamage;
 }
-
-function dealPlayerDamage(damage) {
+// get hurt
+function doPlayerDamage(damage) {
   const dealtDamage = Math.random() * damage;
   playerHealthBar.value -= dealtDamage;
   return dealtDamage;
 }
 
-function increasePlayerHealth(healValue) {
+// heal myself
+function healPlayer(healValue) {
+  console.log('inherited playerHealthBar.value is ' + playerHealthBar.value);
   playerHealthBar.value += healValue;
+  console.log('new playerHealthBar.value is ' + playerHealthBar.value);
 }
-
-function resetGame(value) {
-  playerHealthBar.value = value;
-  monsterHealthBar.value = value;
-  alert('Reset, Next round!')
-}
-
+// remove bonus life
 function removeBonusLife() {
   bonusLifeEl.parentNode.removeChild(bonusLifeEl);
 }
 
 function setPlayerHealth(health) {
   playerHealthBar.value = health;
+}
+
+function resetGame(value) {
+  playerHealthBar.value = value;
+  monsterHealthBar.value = value;
+  alert('Reset, Next round!')
 }
